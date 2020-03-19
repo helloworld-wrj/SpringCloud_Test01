@@ -1,0 +1,13 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: springcloud-provider-query #对应着erueka的Application的名字
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-query-8082 #修改监控页面上默认显示信息，
+
