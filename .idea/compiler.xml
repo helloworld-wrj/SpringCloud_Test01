@@ -6,24 +6,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springcloud-config-client-3355" />
+        <module name="springcloud-provider-query-8082" />
+        <module name="springcloud-eureka-7001" />
+        <module name="springcloud-consumer-80" />
+        <module name="springcloud-consumer" />
+        <module name="springcloud-config-service-3344" />
+        <module name="springcloud-eureka-7003" />
         <module name="springcloud-provider-register-8084" />
         <module name="springcloud-provider-register-8083" />
-        <module name="springcloud-provider-query-8082" />
-        <module name="springcloud-consumer-80" />
-        <module name="springcloud-api" />
-        <module name="springcloud-consumer" />
         <module name="springcloud-provider-register-8081" />
-        <module name="springcloud-provider-register-hystrix-8085" />
-        <module name="springcloud-consumer-feign-80" />
-        <module name="springcloud-eureka-7003" />
-        <module name="springcloud-eureka-7002" />
-        <module name="springcloud-eureka-7001" />
+        <module name="springcloud-api" />
         <module name="springcloud-comsumer-hystrix-dashboard-9001" />
+        <module name="springcloud-provider-register-hystrix-8085" />
+        <module name="springcloud-eureka-7002" />
+        <module name="springcloud-consumer-feign-80" />
+        <module name="springcloud-zull-9527" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springcloud-api" target="1.8" />
       <module name="springcloud-comsumer-hystrix-dashboard-9001" target="1.8" />
+      <module name="springcloud-config-client-3355" target="1.8" />
+      <module name="springcloud-config-service-3344" target="1.8" />
       <module name="springcloud-consumer" target="1.8" />
       <module name="springcloud-consumer-80" target="1.8" />
       <module name="springcloud-consumer-feign-80" target="1.8" />
@@ -35,6 +40,7 @@
       <module name="springcloud-provider-register-8083" target="1.8" />
       <module name="springcloud-provider-register-8084" target="1.8" />
       <module name="springcloud-provider-register-hystrix-8085" target="1.8" />
+      <module name="springcloud-zull-9527" target="1.8" />
       <module name="springcloud_test01" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -42,6 +48,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springcloud-api" options="-parameters" />
       <module name="springcloud-comsumer-hystrix-dashboard-9001" options="-parameters" />
+      <module name="springcloud-config-client-3355" options="-parameters" />
+      <module name="springcloud-config-service-3344" options="-parameters" />
       <module name="springcloud-consumer" options="-parameters" />
       <module name="springcloud-consumer-80" options="-parameters" />
       <module name="springcloud-consumer-feign-80" options="-parameters" />
@@ -53,6 +61,7 @@
       <module name="springcloud-provider-register-8083" options="-parameters" />
       <module name="springcloud-provider-register-8084" options="-parameters" />
       <module name="springcloud-provider-register-hystrix-8085" options="-parameters" />
+      <module name="springcloud-zull-9527" options="-parameters" />
       <module name="springcloud_test01" options="-parameters" />
     </option>
   </component>

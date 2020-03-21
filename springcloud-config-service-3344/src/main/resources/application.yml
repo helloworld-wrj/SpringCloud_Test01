@@ -1,0 +1,13 @@
+server:
+  port: 3344
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/wj199/SpringCloud-Test01-Config.git
+
+
+
+

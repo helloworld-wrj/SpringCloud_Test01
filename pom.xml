@@ -29,6 +29,9 @@
         <module>springcloud-consumer-feign-80</module>
         <module>springcloud-provider-register-hystrix-8085</module>
         <module>springcloud-comsumer-dashboard-9001</module>
+        <module>springcloud-zull-9527</module>
+        <module>springcloud-config-service-3344</module>
+        <module>springcloud-config-client-3355</module>
     </modules>
 
     <properties>

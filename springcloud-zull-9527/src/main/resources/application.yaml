@@ -1,0 +1,19 @@
+server:
+ port: 9527
+spring:
+  application:
+    name: springcloud-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: springcloud-zuul-instance-id #修改监控页面上默认显示信息，可以随便写
+
+zuul:
+  routes:
+    test.serviceId: springcloud-provider-register
+    test.path: /cloud/**
+  ignored-services: springcloud-provider-register # "*" 隐藏全部
+#  prefix: /aa  #配置前缀

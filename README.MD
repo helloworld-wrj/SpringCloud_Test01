@@ -1,6 +1,13 @@
 ### 一、介绍
 spring cloud测试应用，包括，服务提供、注册、消费, 
 
+涉及到，Spring Cloud Netflix 
+- Eureka
+- Ribbon
+- Feign
+- Hystrix
+- Spring Cloud Config
+
 利用springboot提供的Restful风格，
 ### 二、环境
 - IDEA
@@ -77,8 +84,113 @@ public ServletRegistrationBean hystrixMetricsStreamServlet(){
 }
 ```
 5. 启动注册中心，启动可视化模块，启动服务模块8085
-6. 打开http://localhost:8085/actuator/hystrix.stream，访问配置了熔断请求的url，可以看到ping信息
-7. 将**http://localhost:8085/actuator/hystrix.stream**写入导可视化页面，即可
-----2020/03/19
+6. 打开**http://localhost:8085/actuator/hystrix.stream**，访问配置了熔断请求的url，可以看到ping信息
+7. 将**http://localhost:8085/actuator/hystrix.stream** 写入导可视化页面，即可
+----2020/03/21
+
+#### 3.8 zuul 路由网关，管理服务的请求路由
+1. 新建zuul模块，导进依赖eureka zuul的依赖
+2. 写配置，端口，
+- server.application.name 
+- eureka client server-url defaultZone instance-id ip
+3. 写启动类，添加@EnableZuulProxy
+4. 启动eureka, 服务，zuul
+5. 服务eureka, 服务，localhost:9527/服务名称/服务请求
+http://localhost:8085/register/getUserInfo
+http://localhost:9527/springcloud-provider-register/register/getUserInfo
+
+6. 隐藏服务名，添加zuul配置，将cloud代替之前的再次访问
+```yaml
+zuul:
+  routes:
+    mycloud.serviceId: springcloud-provider-register
+    mycloud.path: /cloud/**
+
+```
+7. 关闭添加服务名链接，只允许通过zuul配置后的访问，即cloud/
+```yaml
+zuul:
+  routes:
+    test.serviceId: springcloud-provider-register
+    test.path: /cloud/**
+```
+
+#### 3.9 分布式配置中心
+- 建立远程（本地），配置文件所在
+- 建立服务端，连接远程，读取文件
+- 建立客户端
+
+#### 3.9.1 建立远程
+1. 在远程新建仓库，在本地克隆
+2. 在该项目添加application.yml文件，并添加配置
+3. 更新到远程仓库
+```
+spring:
+  profiles:
+    active: dev
+    
+---
+spring
+  profiles: dev
+  application:
+  name: spring-cloud-config-dev
+  
+---
+spring
+  profiles: test
+  application:
+  name: spring-cloud-config-test
+```
+```
+git add .
+git status
+git commit -m "add application file"
+git push origin master
+```
+##### 3.9.2 建立服务端，读取文件
+1. 新建服务端，（用来连接远程）
+2. 添加依赖，starter,spring-cloud-config-server
+3. 添加配置，添加主启动类
+```
+server:
+  port: 3344
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/wj199/SpringCloud-Test01-Config.git
+```
+4. 访问
+> http://localhost:3344/application-test.yml
+
+##### 3.9.3 建立客户端
+1. 添加客户端需要的配置文件到远程
+2. 新建客户端模块，添加依赖，spring-cloud-starter-config(与server版本一致),web,eureka
+3. 添加两个配置文件（系统级别bootstrap，用户级别application）
+```yaml
+#系统级别配置
+
+spring:
+  cloud:
+    config:
+      name: config-client   #远程的配置文件名称，不用后缀
+      profile: dev
+      label: master
+      uri: http://localhost:3344/
+```
+```yaml
+#用户级别配置
+spring:
+  application:
+    name: Test-client-3355
+```
+4.添加启动类，控制类（测试是否成功读取远程配置文件）
+
+检查是否可以访问，是否向eureka注册
+
+
+
 
 
