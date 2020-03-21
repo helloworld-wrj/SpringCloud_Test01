@@ -6,6 +6,7 @@ spring cloud测试应用，包括，服务提供、注册、消费,
 - Ribbon
 - Feign
 - Hystrix
+- Zuul
 - Spring Cloud Config
 
 利用springboot提供的Restful风格，
